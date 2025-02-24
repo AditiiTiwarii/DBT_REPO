@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: int_orders
+    description: "Intermediate table for enriched orders."
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+
+  - name: int_order_revenue
+    description: "Intermediate table for order revenue."
+    columns:
+      - name: order_id
+        tests:
+          - not_null

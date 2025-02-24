@@ -1,0 +1,1 @@
+SELECT order_id, total_revenue from fct_order_revenue WHERE total_revenue<0 

@@ -1,0 +1,79 @@
+version: 2
+
+sources:
+  - name: raw   
+    schema: raw  
+    tables:
+      - name: customers
+        description: "Customer details with unique customer_id."
+        columns:
+          - name: customer_id
+            description: "Primary key of customers table."
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            description: "Customer's first name in lowercase."
+          - name: last_name
+            description: "Customer's last name in lowercase."
+          - name: email
+            description: "Email of the customer."
+          - name: created_at
+            description: "Timestamp when the customer was created"
+
+      - name: orders
+        description: "Orders placed by customers."
+        columns:
+          - name: order_id
+            description: "Primary key of orders table."
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: "Foreign key referencing customers."
+            tests:
+              - not_null
+          - name: order_date
+            description: "Date when the order was placed."
+          - name: order_status
+            description: "Current status of the order."
+          - name: total_amount
+            description: "Total cost of the order."
+            tests:
+              - not_null
+
+      - name: order_items
+        description: "Items included in each order."
+        columns:
+          - name: order_item_id
+            description: "Primary key of order_items table."
+            tests:
+              - unique
+              - not_null
+          - name: order_id
+            description: "Foreign key referencing orders."
+            tests:
+              - not_null
+          - name: product_id
+            description: "Foreign key referencing products."
+            tests:
+              - not_null
+          - name: quantity
+            description: "Number of items ordered."
+          - name: unit_price
+            description: "Price per unit of the item."
+
+      - name: products
+        description: "List of products available for sale."
+        columns:
+          - name: product_id
+            description: "Primary key of products table."
+            tests:
+              - unique
+              - not_null
+          - name: product_name
+            description: "Name of the product."
+          - name: category
+            description: "Category the product."
+          - name: price
+            description: "Price of the product."

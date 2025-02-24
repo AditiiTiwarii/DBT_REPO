@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Staging model for customers"
+    columns:
+      - name: cust_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: "Staging model for orders"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: total_amount
+        tests:
+          - not_null
+
+  - name: stg_products
+    description: "Staging model for products"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_order_items
+    description: "Items included in each order."
+    columns:
+            - name: order_item_id
+              description: "Primary key of order_items table."
+              tests:
+                - unique
+                - not_null
+            - name: order_id
+              description: "Foreign key referencing orders."
+              tests:
+                - not_null
+            - name: product_id
+              description: "Foreign key referencing products."
+              tests:
+                - not_null
+            - name: quantity
+              description: "Number of items ordered."
+            - name: unit_price
+              description: "Price per unit of the item."
+
+
+ 
